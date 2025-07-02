@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState } from "react";
 import { Menu, User } from 'lucide-react';
 import Sidebar from './Sidebar';
+import MetricCard from './MetricCard';
 
 const Dashboard: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -11,6 +12,7 @@ const Dashboard: React.FC = () => {
 
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       
+
       {sidebarOpen && (
         <div 
           className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
@@ -18,6 +20,7 @@ const Dashboard: React.FC = () => {
         />
       )}
       
+
       <div className="flex-1 flex flex-col min-w-0 lg:ml-64">
         <header className="bg-white shadow-sm px-6 py-4 flex-shrink-0 border-b border-gray-200">
           <div className="flex items-center justify-between">
@@ -35,6 +38,32 @@ const Dashboard: React.FC = () => {
             </button>
           </div>
         </header>
+
+        <main className="flex-1 p-6 overflow-auto">
+          <div className="max-w-7xl mx-auto space-y-6">
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <MetricCard
+                title="Total Sales"
+                value="$56,200"
+                change="5,2%"
+                isPositive={true}
+              />
+              <MetricCard
+                title="Total Expenses"
+                value="$24,500"
+                change="1,8%"
+                isPositive={false}
+              />
+              <MetricCard
+                title="Net Profit"
+                value="$31,700"
+                change=""
+                isPositive={true}
+              />
+            </div>
+          </div>
+        </main>
       </div>
     </div>
   );
